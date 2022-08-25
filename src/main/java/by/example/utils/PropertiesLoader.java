@@ -18,7 +18,7 @@ public class PropertiesLoader {
     }
 
     public static Properties loadProperties() {
-        Properties properties = loadProperties("config.properties");
+        Properties properties = loadProperties("configuration.properties");
         String user = properties.getProperty("user");
         Properties userProperties = loadProperties(user + ".properties");
         properties.putAll(userProperties);

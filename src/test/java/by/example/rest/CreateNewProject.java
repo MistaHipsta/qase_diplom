@@ -1,8 +1,12 @@
 package by.example.rest;
 
 import by.example.dto.Project;
+import by.example.utils.PropertiesLoader;
+import com.github.javafaker.Faker;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
+
+import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -11,20 +15,38 @@ public class CreateNewProject {
 
     @Test
     public void createProject(){
+        // POST PROJECT /project
+        Faker faker = new Faker();
+        Properties properties = PropertiesLoader.loadProperties();
         Project expectedProject = Project.builder()
-                .title("Test QA1") //TODO add faker
-                .code("Example1")
+                .title(faker.lorem().characters(10))
+                .code(faker.lorem().characters(10))
                 .build();
-        given().
+        String code = given().
                 contentType(ContentType.JSON).
                 accept(ContentType.JSON).
-                header("Token","b986b70ee999b50414b1e4ad933b477a36c4c098").
+                header("Token",properties.getProperty("Token")).
                 body(expectedProject).
-
+                log().all().
         when().
                 post("https://api.qase.io/v1/project").
         then().
                 statusCode(200).
-                body("status",equalTo(true));
+                log().all().
+                body("status",equalTo(true)).
+                extract().body().jsonPath().getString("result.code");
+
+        //GET PROJECT /project/{codeProject}
+        given().
+                contentType(ContentType.JSON).
+                accept(ContentType.JSON).
+                header("Token",properties.
+                getProperty("Token")).
+                pathParams("codeProject",code).
+                log().all().
+        when().
+                get("https://api.qase.io/v1/project/{codeProject}").
+        then().
+                statusCode(200);
     }
 }
