@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class CreateNewProject {
-
+    public String extractedCode;
     @Test
     public void createProject(){
         // POST PROJECT /project
@@ -22,7 +22,7 @@ public class CreateNewProject {
                 .title(faker.lorem().characters(10))
                 .code(faker.lorem().characters(10))
                 .build();
-        String code = given().
+        extractedCode = given().
                 contentType(ContentType.JSON).
                 accept(ContentType.JSON).
                 header("Token",properties.getProperty("Token")).
@@ -33,11 +33,8 @@ public class CreateNewProject {
         then().
                 statusCode(200).
                 log().all().
-                body("status",equalTo(true))
-                .extract()
-                .body()
-                .jsonPath()
-                .getString("result.code");
+                body("status",equalTo(true)).
+                extract().body().jsonPath().getString("result.code");
 
         //GET PROJECT /project/{codeProject}
         given().
@@ -45,7 +42,7 @@ public class CreateNewProject {
                 accept(ContentType.JSON).
                 header("Token",properties.
                 getProperty("Token")).
-                pathParams("codeProject",code).
+                pathParams("codeProject",extractedCode).
                 log().all().
         when().
                 get("https://api.qase.io/v1/project/{codeProject}").

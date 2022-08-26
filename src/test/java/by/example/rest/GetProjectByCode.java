@@ -8,7 +8,7 @@ import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 
-public class GetProjectByCode  {
+public class GetProjectByCode extends CreateNewProject  {
     @Test
     public void getProgectByCode(){
         Properties properties = PropertiesLoader.loadProperties();
@@ -19,7 +19,7 @@ public class GetProjectByCode  {
                 getProperty("Token")).
                 log().all().
         when().
-                get("https://api.qase.io/v1/project/DEMO").
+                get("https://api.qase.io/v1/project/"+ extractedCode).
         then().
                 statusCode(200);
     }
