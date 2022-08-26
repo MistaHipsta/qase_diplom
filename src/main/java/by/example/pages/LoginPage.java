@@ -14,7 +14,7 @@ import static org.openqa.selenium.By.xpath;
 public class LoginPage {
 
     public LoginPage open() {
-        Selenide.open("/login");
+        Selenide.open("https://app.qase.io/login");
         getWebDriver()
                 .manage()
                 .window()
@@ -33,14 +33,8 @@ public class LoginPage {
         Properties properties = PropertiesLoader.loadProperties();
         new LoginPage()
                 .open()
-                .login(properties.getProperty("username"), properties.getProperty("password"));
+                .login(properties.getProperty("user"), properties.getProperty("password"));
         assertThat($(id("createButton")).getText()).isEqualTo("Create new project");
         return new ProjectPage();
-    }
-
-    public LoginPage logOut(){
-        $(xpath("//img[@class='X8BNLp']")).click();
-        $(xpath("//span[normalize-space()='Sign out']")).click();
-        return new LoginPage();
     }
 }

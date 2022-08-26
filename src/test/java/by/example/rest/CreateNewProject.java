@@ -33,8 +33,11 @@ public class CreateNewProject {
         then().
                 statusCode(200).
                 log().all().
-                body("status",equalTo(true)).
-                extract().body().jsonPath().getString("result.code");
+                body("status",equalTo(true))
+                .extract()
+                .body()
+                .jsonPath()
+                .getString("result.code");
 
         //GET PROJECT /project/{codeProject}
         given().

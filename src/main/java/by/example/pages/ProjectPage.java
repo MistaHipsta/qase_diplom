@@ -11,7 +11,7 @@ import static org.openqa.selenium.By.xpath;
 public class ProjectPage {
 
     public ProjectPage openProjectPage() {
-        Selenide.open("/projects");
+        Selenide.open("https://app.qase.io/projects");
         getWebDriver()
                 .manage()
                 .window()
@@ -36,5 +36,11 @@ public class ProjectPage {
         $(xpath("//a[@class='text-danger']")).click();
         $(xpath("//button[@type='submit']")).click();
         return new ProjectPage();
+    }
+
+    public LoginPage LogOut(){
+        $(xpath("//span[@aria-label='Chat']/following::span[1]")).click();
+        $(xpath("//span[normalize-space()='Sign out']")).click();
+        return new LoginPage();
     }
 }
