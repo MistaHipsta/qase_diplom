@@ -1,5 +1,5 @@
 Feature: Create project
-  Scenario: Create new project
+  Scenario: Create project
     Given Create project with valid values
     And Check created project with valid values
     And Delete created project
