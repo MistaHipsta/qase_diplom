@@ -11,14 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
     public LoginPage open() {
-        Selenide.open("https://app.qase.io/login");
-        getWebDriver()
-                .manage()
-                .window()
-                .maximize();
+        Selenide.open("/login");
         return new LoginPage();
     }
 
@@ -33,7 +29,7 @@ public class LoginPage {
         Properties properties = PropertiesLoader.loadProperties();
         new LoginPage()
                 .open()
-                .login(properties.getProperty("user"), properties.getProperty("password"));
+                .login(properties.getProperty("username"), properties.getProperty("password"));
         assertThat($(id("createButton")).getText()).isEqualTo("Create new project");
         return new ProjectPage();
     }
