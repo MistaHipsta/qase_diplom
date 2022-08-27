@@ -107,8 +107,8 @@ public class CreateTestCaseSteps {
                 post("https://api.qase.io/v1/case/"+extractedCode).
                 then().
                 statusCode(200).
-                log().all();
-//                body("status",equalTo(true)).
-//                extract().body().jsonPath().getString("result.code");
+                log().all().
+                body("status",equalTo(true)).
+                extract().body().jsonPath().getString("result.code");
     }
 }
