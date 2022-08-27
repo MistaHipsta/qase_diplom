@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite">
+    <listeners>
+        <listener class-name="tests.common.AnnotationTransformer"/>
+        <listener class-name="tests.common.TestListener"/>
+    </listeners>
+    <test name="Login">
+        <classes>
+            <class name="tests.LoginTest">
+            </class>
+        </classes>
+    </test>
+    <test name="NewProject">
+        <classes>
+            <class name="tests.NewProjectTest">
+            </class>
+        </classes>
+    </test>
+    <test name="NewSuite">
+        <classes>
+            <class name="tests.NewSuiteTest">
+            </class>
+        </classes>
+    </test>
+    <test name="NewTestCase">
+        <classes>
+            <class name="tests.NewTestCaseTest">
+            </class>
+        </classes>
+    </test>
+    <test name="NewTestRunTest">
+        <classes>
+            <class name="tests.NewTestRunTest">
+            </class>
+        </classes>
+    </test>
+</suite>
