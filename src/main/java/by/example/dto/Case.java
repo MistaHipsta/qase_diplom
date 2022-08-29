@@ -12,9 +12,9 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor(access = PRIVATE)
 @Builder
 public class Case {
-    public List<String> attachments;
+    //public List<String> attachments;
     public List<Step> steps;
-    public List<String> tags;
+    //public List<String> tags;
     public String title;
     public String description;
     public String preconditions;
