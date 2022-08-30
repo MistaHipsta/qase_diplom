@@ -10,8 +10,13 @@ import static org.openqa.selenium.By.xpath;
 
 public class ProjectPage {
 
+    private String projectName;
+    private String projectCode;
+    private String description;
+    private String projectAccessType;
+
     public ProjectPage openProjectPage() {
-        Selenide.open("https://app.qase.io/projects");
+        Selenide.open("/projects");
         getWebDriver()
                 .manage()
                 .window()
@@ -20,12 +25,12 @@ public class ProjectPage {
         return new ProjectPage();
     }
 
-    public ProjectPage createValidProject(String projectName, String projectCode, String description) {
+    public ProjectPage createValidProject(String projectName, String projectCode, String description, String accessType) {
         $(id("createButton")).click();
         $(id("inputTitle")).sendKeys(projectName);
         $(id("inputCode")).sendKeys(projectCode);
         $(id("inputDescription")).sendKeys(description);
-        $(id("public-access-type")).click();
+        $(id(String.format("%s-access-type",accessType))).click();
         $(xpath("//button[@type='submit']")).click();
         return new ProjectPage();
     }
@@ -42,5 +47,37 @@ public class ProjectPage {
         $(xpath("//span[@aria-label='Chat']/following::span[1]")).click();
         $(xpath("//span[normalize-space()='Sign out']")).click();
         return new LoginPage();
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getProjectCode() {
+        return projectCode;
+    }
+
+    public void setProjectCode(String projectCode) {
+        this.projectCode = projectCode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getProjectAccessType() {
+        return projectAccessType;
+    }
+
+    public void setProjectAccessType(String projectAccessType) {
+        this.projectAccessType = projectAccessType;
     }
 }
