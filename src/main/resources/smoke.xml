@@ -7,9 +7,9 @@
     <test name="Chrome">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="by.test.LoginTest">
+            <class name="by.steps.">
                 <methods>
-                    <include name="openLoginPageAndLogInWithNextParams"/>
+                    <include name="userShouldLoginWithValidCredentials"/>
                 </methods>
             </class>
         </classes>
