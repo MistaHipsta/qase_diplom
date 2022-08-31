@@ -1,4 +1,4 @@
-package by.example.dto;
+package by.example.rest.dto.testCases;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

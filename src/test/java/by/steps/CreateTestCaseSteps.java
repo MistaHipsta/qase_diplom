@@ -1,10 +1,10 @@
 package by.steps;
 
-import by.example.dto.Case;
-import by.example.dto.OnlyRequiredFields;
-import by.example.dto.Project;
+import by.example.rest.dto.testCases.Case;
+import by.example.rest.dto.project.OnlyRequiredFields;
+import by.example.rest.dto.project.Project;
 
-import by.example.dto.Step;
+import by.example.rest.dto.testCases.Step;
 import by.example.utils.PropertiesLoader;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
