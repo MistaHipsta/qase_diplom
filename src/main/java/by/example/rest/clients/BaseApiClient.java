@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.Map;
 import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
@@ -29,11 +30,21 @@ public class BaseApiClient {
                 body(body).
                 log().ifValidationFails().
                 when().
-                post("https://api.qase.io/" + uri).
+                post("https://api.qase.io/"+ uri).
                 then().
                 statusCode(statusCode).
                 log().ifValidationFails().
                 extract().
                 response();
     }
+//    public Response get(String uri) {
+//        return given().spec(baseRequest)
+//                .when()
+//                .get(uri)
+//                .then()
+//                .log().ifValidationFails()
+//                .extract()
+//                .response();
+//    }
+
 }

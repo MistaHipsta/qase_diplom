@@ -17,9 +17,14 @@ public class CreateProjectSteps {
     public void createNewProject() {
         project = new ProjectProvider().getProject();
         ProjResp postProject = projectApiClient.postProject( project,200);
+
         assertThat(postProject.isStatus()).as("Ne sozdalos").isEqualTo(true);
         assertThat(postProject.getResult().getCode()).as("Ne vernii code")
                 .isEqualTo(project.getCode().toUpperCase());
+
+//        ProjResp getCreatedProject = projectApiClient.getProject(project.getCode(),200);
+
+        //assertThat(getCreatedProject.getResult()).isEqualTo(project.code);
     }
 
 

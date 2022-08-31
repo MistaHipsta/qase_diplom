@@ -6,11 +6,16 @@ import by.example.utils.PropertiesLoader;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
+import java.util.Map;
 import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 
 public class ProjectApiClient extends BaseApiClient {
+
+    private final static String PROJECT_URI = "v1/defect";
+    private static final String PROJECT_URI_WITH_CODE = PROJECT_URI + "/{code}";
+    private static final String PROJECT_CODE = "code";
 
  public ProjResp postProject(Project project, int stasusCode) {
      Response response = post("v1/project", project,200);
@@ -21,17 +26,12 @@ public class ProjectApiClient extends BaseApiClient {
                      .as(ProjResp.class);
 
  }
-    public Project getProject(String projectId){
-        Properties properties = PropertiesLoader.loadProperties();
-       return   given().
-                contentType(ContentType.JSON).
-                accept(ContentType.JSON).
-                header("Token",properties.
-                        getProperty("Token")).
-                pathParam(projectId,projectId).
-                when().
-                get("https://api.qase.io/v1/project/{projectId}").
-                then().
-                statusCode(200).extract().as(Project.class);
-    }
+//    public ProjResp getProject(String projectId, int statusCodeHttp){
+//        Response response = get(projectId);
+//        return response.then()
+//                .statusCode(statusCodeHttp)
+//                .extract()
+//                .body()
+//                .as(ProjResp.class);
+//    }
 }
