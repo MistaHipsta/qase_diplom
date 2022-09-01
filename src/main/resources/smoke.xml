@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Smoke">
-    <listeners>
-        <listener class-name="by.example.utils.TestListener"/>
-    </listeners>
-    <test name="Chrome">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="by.steps.">
-                <methods>
-                    <include name="userShouldLoginWithValidCredentials"/>
-                </methods>
-            </class>
-        </classes>
+<suite name="Suite">
+    <test name="TestNG">
+        <packages>
+            <package name="runner"/>
+        </packages>
     </test>
-</suite>
+</suite> <!-- Suite -->
