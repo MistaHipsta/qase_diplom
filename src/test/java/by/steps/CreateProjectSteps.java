@@ -6,23 +6,30 @@ import by.example.rest.dto.responses.ProjResp;
 import by.example.rest.providers.ProjectProvider;
 import io.cucumber.java.en.Given;
 
+
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class CreateProjectSteps {
     ProjectApiClient projectApiClient = new ProjectApiClient();
+    ProjectProvider projectProvider = new ProjectProvider();
     Project project;
 
     @Given("Create project with valid values")
     public void createNewProject() {
-        project = new ProjectProvider().getProject();
-        ProjResp postProject = projectApiClient.postProject( project,200);
+        project = new ProjectProvider().getProjectValues();
+        ProjResp postProject = projectApiClient.postProject( project, 200);
 
-        assertThat(postProject.isStatus()).as("Ne sozdalos").isEqualTo(true);
-        assertThat(postProject.getResult().getCode()).as("Ne vernii code")
-                .isEqualTo(project.getCode().toUpperCase());
+        assertThat(postProject.isStatus()).as("The status is incorrect").isTrue();
+        assertThat(postProject.getResult().getCode()).as("The code is incorrect")
+                .isEqualTo(project.getCode());
 
-//        ProjResp getCreatedProject = projectApiClient.getProject(project.getCode(),200);
+        ProjResp actualProject = projectApiClient.getProject(project.getCode(),200);
+
+//        assertThat(projectApiClient.getProject(project.getCode(),200)).as("The project is not actual").usingRecursiveComparison()
+//                .comparingOnlyFields("title", "actual_result")
+//                .isEqualTo(project.getCode());
 
         //assertThat(getCreatedProject.getResult()).isEqualTo(project.code);
     }

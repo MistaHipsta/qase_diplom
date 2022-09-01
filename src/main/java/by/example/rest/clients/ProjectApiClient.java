@@ -2,36 +2,31 @@ package by.example.rest.clients;
 
 import by.example.rest.dto.project.Project;
 import by.example.rest.dto.responses.ProjResp;
-import by.example.utils.PropertiesLoader;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import java.util.Map;
-import java.util.Properties;
-
-import static io.restassured.RestAssured.given;
 
 public class ProjectApiClient extends BaseApiClient {
 
-    private final static String PROJECT_URI = "v1/defect";
-    private static final String PROJECT_URI_WITH_CODE = PROJECT_URI + "/{code}";
-    private static final String PROJECT_CODE = "code";
+    private final static String PROJECT_URI = "v1/project";
+    private static final String PROJECT_URI_WITH_CODE = PROJECT_URI + "/{projectCode}";
+    private static final String PROJECT_CODE = "projectCode";
 
- public ProjResp postProject(Project project, int stasusCode) {
-     Response response = post("v1/project", project,200);
+ public ProjResp postProject(Project project, int statusCode) {
+     Response response = post( PROJECT_URI, project, statusCode);
      return  response.then()
-                     .statusCode(200)
+                     .statusCode(statusCode)
                      .extract()
                      .body()
                      .as(ProjResp.class);
 
  }
-//    public ProjResp getProject(String projectId, int statusCodeHttp){
-//        Response response = get(projectId);
-//        return response.then()
-//                .statusCode(statusCodeHttp)
-//                .extract()
-//                .body()
-//                .as(ProjResp.class);
-//    }
+    public ProjResp getProject(String projectCode, int statusCodeHttp){
+        Response response = get(PROJECT_URI_WITH_CODE, Map.of(PROJECT_CODE, projectCode));
+        return response.then()
+                .statusCode(statusCodeHttp)
+                .extract()
+                .body()
+                .as(ProjResp.class);
+    }
 }

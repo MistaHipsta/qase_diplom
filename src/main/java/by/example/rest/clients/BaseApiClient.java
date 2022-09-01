@@ -37,14 +37,17 @@ public class BaseApiClient {
                 extract().
                 response();
     }
-//    public Response get(String uri) {
-//        return given().spec(baseRequest)
-//                .when()
-//                .get(uri)
-//                .then()
-//                .log().ifValidationFails()
-//                .extract()
-//                .response();
-//    }
+    public Response get(String uri, Map<String, ?> code) {
+        return   given()
+                .spec(baseRequest)
+                .pathParams(code)
+                .when()
+                .log().ifValidationFails()
+                .get(uri)
+                .then()
+                .log().ifValidationFails()
+                .extract()
+                .response();
+    }
 
 }
