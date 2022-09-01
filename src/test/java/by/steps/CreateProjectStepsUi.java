@@ -44,7 +44,7 @@ public class CreateProjectStepsUi {
     @And("check project name equal to created project")
     public void checkProjectNameEqualToCreatedProject() {
         Assert.assertEquals($(xpath(String.format("//a[contains(text(),'%s')]", validProject.getProjectName()))).getText()
-                , validProject.getProjectName());
+                , validProject.getProjectName(),"Project name not equal created project");
 
     }
 
@@ -93,7 +93,7 @@ public class CreateProjectStepsUi {
     @And("check expected alert message")
     public void checkExpectedAlertMessage() {
         Assert.assertEquals($(xpath("//div[@role='alert']")).getText(),
-                "Project settings were successfully updated!");
+                "Project settings were successfully updated!","Alert not expected");
     }
 
     @And("check alert is not visible")
@@ -115,19 +115,19 @@ public class CreateProjectStepsUi {
     @And("check error message code text")
     public void checkErrorMessageText() {
         Assert.assertEquals($(xpath("//div[@class='form-control-feedback']")).getText()
-                ,"The code format is invalid.");
+                ,"The code format is invalid.","Invalid error code text");
     }
 
     @And("check error message title text")
     public void checkErrorMessageTitleText() {
         Assert.assertEquals($(xpath("//div[@class='form-control-feedback']")).getText()
-                ,"The title may not be greater than 255 characters.");
+                ,"The title may not be greater than 255 characters.","Invalid error message text");
     }
 
     @And("check code name")
     public void checkCodeName() {
         Assert.assertEquals(StringUtils.substring($(xpath("//h1")).getText(),0,10)
-                ,"TESTCODETO");
+                ,"TESTCODETO","Project code not match");
     }
 
 }

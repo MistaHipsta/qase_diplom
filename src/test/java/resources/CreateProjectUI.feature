@@ -29,10 +29,14 @@ Feature: Create project
       | Description new  | Description new |
     And wait 2 second
     And click update settings button
-    And open project page
+
+    When open project page
     And check project name equal to created project
+
     When click dropdown menu on updated project
+
     And click delete button
+
     And click delete project submit button
 
   @smoke

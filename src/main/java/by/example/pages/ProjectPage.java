@@ -36,14 +36,6 @@ public class ProjectPage {
         return new ProjectPage();
     }
 
-    public ProjectPage deleteCreatedProject (){
-        openProjectPage();
-        $(xpath("//i[@class='fa fa-ellipsis-h']")).click();
-        $(xpath("//a[@class='text-danger']")).click();
-        $(xpath("//button[@type='submit']")).click();
-        return new ProjectPage();
-    }
-
     public LoginPage LogOut(){
         $(xpath("//span[@aria-label='Chat']/following::span[1]")).click();
         $(xpath("//span[normalize-space()='Sign out']")).click();
