@@ -1,6 +1,6 @@
 Feature: Create project
   @smoke
-  Scenario: CRUD project scenario
+  Scenario: CRUD project positive scenario
     Given open login page and log in with next valid params:
       | username | suvorov.evgenii2727@gmail.com |
       | password | .#mYZV.v4*iV6zH               |
@@ -24,16 +24,45 @@ Feature: Create project
     And check alert is not visible
 
     When click on input project name field and set next value:
-      | Project name new | Change name |
-      | Project code new | Change code |
-      | Description new  | Description new|
+      | Project name new | Change name     |
+      | Project code new | newCode         |
+      | Description new  | Description new |
     And wait 2 second
     And click update settings button
-    ##And check expected alert message
     And open project page
     And check project name equal to created project
-   ##When click delete button on project page
-   ##And click delete project submit button
     When click dropdown menu on updated project
-   And click delete button
-   And click delete project submit button
+    And click delete button
+    And click delete project submit button
+
+  @smoke
+  Scenario: CRUD project negative scenario
+    Given open login page and log in with next valid params:
+      | username | suvorov.evgenii2727@gmail.com |
+      | password | .#mYZV.v4*iV6zH               |
+    And click on create project button and set next value on Project create field:
+      | Project name        | Test project name     |
+      | Project code        | Test code             |
+      | Description         | Some test description |
+      | Project access type | public                |
+    And check error message code text
+
+    When open project page
+
+    And click on create project button and set next value on Project create field:
+      | Project name        | Test project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameTest project nameW |
+      | Project code        | Test                                                                                                                                                                                                                                                             |
+      | Description         | Some test description                                                                                                                                                                                                                                            |
+      | Project access type | public                                                                                                                                                                                                                                                           |
+    And check error message title text
+
+    When open project page
+
+    And click on create project button and set next value on Project create field:
+      | Project name        | Test project name     |
+      | Project code        | TestCodeToLarge       |
+      | Description         | Some test description |
+      | Project access type | public                |
+
+    And wait 3 second
+    And check code name

@@ -2,12 +2,13 @@ package by.steps;
 
 import by.example.pages.ProjectPage;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.apache.commons.lang.StringUtils;
 import org.testng.Assert;
+
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -53,11 +54,9 @@ public class CreateProjectStepsUi {
                 , validProject.getProjectName()))).click();
     }
 
-    SelenideElement projectRow = $(xpath(String.format("//*[contains(text(),'%s')]/../../..",validProject.getProjectName())));
-
     @And("click delete button")
     public void clickDeleteButton() {
-        projectRow.findElement(xpath(".//a[@class='text-danger']")).click();
+        $(xpath("//*[contains(text(),'Change name')]/../../..//a[@class='text-danger']")).click();
     }
 
     @And("click delete project submit button")
@@ -78,14 +77,17 @@ public class CreateProjectStepsUi {
         validProject.setProjectCode(params.get("Project code new"));
         validProject.setDescription(params.get("Description new"));
         validProject.setProjectAccessType(params.get("Project access type"));
+        $(xpath("//input[@id='inputTitle']")).clear();
         $(xpath("//input[@id='inputTitle']")).sendKeys(params.get("Project name new"));
+        $(xpath("//input[@id='inputCode']")).clear();
         $(xpath("//input[@id='inputCode']")).sendKeys(params.get("Project code new"));
+        $(xpath("//textarea[@id='inputDescription']")).clear();
         $(xpath("//textarea[@id='inputDescription']")).sendKeys(params.get("Description new"));
     }
 
     @And("click update settings button")
     public void clickUpdateSettingsButton() {
-        $(xpath("//a[normalize-space()='Settings']")).click();
+        $(xpath("//button[@id='update']")).click();
     }
 
     @And("check expected alert message")
@@ -109,4 +111,23 @@ public class CreateProjectStepsUi {
         $(xpath(String.format("//a[text()='%s']//ancestor::tr[@class='project-row']//a[contains(@class,'btn-dropdown')]"
                 , validProject.getProjectName()))).click();
     }
+
+    @And("check error message code text")
+    public void checkErrorMessageText() {
+        Assert.assertEquals($(xpath("//div[@class='form-control-feedback']")).getText()
+                ,"The code format is invalid.");
+    }
+
+    @And("check error message title text")
+    public void checkErrorMessageTitleText() {
+        Assert.assertEquals($(xpath("//div[@class='form-control-feedback']")).getText()
+                ,"The title may not be greater than 255 characters.");
+    }
+
+    @And("check code name")
+    public void checkCodeName() {
+        Assert.assertEquals(StringUtils.substring($(xpath("//h1")).getText(),0,10)
+                ,"TESTCODETO");
+    }
+
 }

@@ -28,6 +28,7 @@ public class ProjectPage {
     public ProjectPage createValidProject(String projectName, String projectCode, String description, String accessType) {
         $(id("createButton")).click();
         $(id("inputTitle")).sendKeys(projectName);
+        $(id("inputCode")).clear();
         $(id("inputCode")).sendKeys(projectCode);
         $(id("inputDescription")).sendKeys(description);
         $(id(String.format("%s-access-type",accessType))).click();

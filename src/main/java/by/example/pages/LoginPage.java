@@ -6,6 +6,7 @@ import com.codeborne.selenide.Selenide;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.By.id;
 
@@ -13,6 +14,10 @@ public class LoginPage {
 
     public LoginPage open() {
         Selenide.open("/login");
+        getWebDriver()
+                .manage()
+                .window()
+                .maximize();
         return new LoginPage();
     }
 
