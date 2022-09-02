@@ -1,14 +1,10 @@
-package by.example.rest.dto.responses;
+package by.example.rest.dto.responses.projectByCode;
 
-import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.util.List;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
@@ -16,11 +12,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 @Builder
 @Accessors(chain = true)
-
-
-public class ProjResp {
-
-    @Expose
-    private boolean status;
-    private Result result;
+public class Defects {
+    public int total;
+    public int open;
 }

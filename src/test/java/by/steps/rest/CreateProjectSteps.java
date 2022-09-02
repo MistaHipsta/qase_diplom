@@ -1,41 +1,33 @@
-package by.steps;
+package by.steps.rest;
 
 import by.example.rest.clients.ProjectApiClient;
 import by.example.rest.dto.project.Project;
-import by.example.rest.dto.responses.ProjResp;
+import by.example.rest.dto.responses.project.ProjResp;
 import by.example.rest.providers.ProjectProvider;
 import io.cucumber.java.en.Given;
 
-
-
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 public class CreateProjectSteps {
     ProjectApiClient projectApiClient = new ProjectApiClient();
-    ProjectProvider projectProvider = new ProjectProvider();
     Project project;
 
     @Given("Create project with valid values")
     public void createNewProject() {
         project = new ProjectProvider().getProjectValues();
-        ProjResp postProject = projectApiClient.postProject( project, 200);
+        ProjResp postProject = projectApiClient.postProject(project, 200);
 
-        assertThat(postProject.isStatus()).as("The status is incorrect").isTrue();
-        assertThat(postProject.getResult().getCode()).as("The code is incorrect")
+        assertThat(postProject.isStatus())
+                .as("The status is incorrect").isTrue();
+        assertThat(postProject.getResult().getCode())
+                .as("The code is incorrect")
                 .isEqualTo(project.getCode());
 
-        ProjResp actualProject = projectApiClient.getProject(project.getCode(),200);
-
-//        assertThat(projectApiClient.getProject(project.getCode(),200)).as("The project is not actual").usingRecursiveComparison()
-//                .comparingOnlyFields("title", "actual_result")
-//                .isEqualTo(project.getCode());
-
-        //assertThat(getCreatedProject.getResult()).isEqualTo(project.code);
+        assertThat(projectApiClient.getProject(project.getCode(), 200))
+                .as("The project is not actual").usingRecursiveComparison()
+                .comparingOnlyFields("title", "actual_result")
+                .isEqualTo(project.getCode());
     }
-
-
-
 
 
 //    @And("Create project with empty title")

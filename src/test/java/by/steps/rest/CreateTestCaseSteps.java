@@ -1,4 +1,4 @@
-package by.steps;
+package by.steps.rest;
 
 import by.example.rest.dto.testCases.Case;
 import by.example.rest.dto.project.OnlyRequiredFields;

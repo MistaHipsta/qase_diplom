@@ -21,24 +21,24 @@ public class BaseApiClient {
                 .header("Token", properties.getProperty("Token"))
                 .baseUri("https://api.qase.io/")
                 .log().ifValidationFails();
-
     }
 
     public Response post(String uri, Object body, int statusCode) {
-        return  given().
-                spec(baseRequest).
-                body(body).
-                log().ifValidationFails().
-                when().
-                post("https://api.qase.io/"+ uri).
-                then().
-                statusCode(statusCode).
-                log().ifValidationFails().
-                extract().
-                response();
+        return given()
+                .spec(baseRequest)
+                .body(body)
+                .log().ifValidationFails()
+                .when()
+                .post("https://api.qase.io/" + uri)
+                .then()
+                .statusCode(statusCode)
+                .log().ifValidationFails()
+                .extract()
+                .response();
     }
+
     public Response get(String uri, Map<String, ?> code) {
-        return   given()
+        return given()
                 .spec(baseRequest)
                 .pathParams(code)
                 .when()
@@ -49,5 +49,4 @@ public class BaseApiClient {
                 .extract()
                 .response();
     }
-
 }

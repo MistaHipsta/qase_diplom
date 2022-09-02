@@ -3,9 +3,7 @@ package by.example.rest.dto.testCases;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
 import java.util.List;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @Data

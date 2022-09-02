@@ -1,4 +1,4 @@
-package by.example.rest.dto.responses;
+package by.example.rest.dto.responses.project;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +14,5 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 @Accessors(chain = true)
 public class Result {
-
     public String code;
 }
