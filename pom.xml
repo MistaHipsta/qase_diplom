@@ -12,22 +12,21 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <selenide.version>6.5.1</selenide.version>
-        <testng.version>7.5</testng.version>
+        <testng.version>7.6.0</testng.version>
         <javafaker.version>1.0.2</javafaker.version>
         <lombok.version>1.18.22</lombok.version>
-        <aspectjweaver.version>1.9.9.1</aspectjweaver.version>
+        <aspectjweaver.version>1.9.6</aspectjweaver.version>
         <log4j.version>2.17.1</log4j.version>
         <dataformat.version>2.13.2</dataformat.version>
-        <allure.version>2.17.3</allure.version>
+        <allure.version>2.18.1</allure.version>
         <allure-maven.version>2.11.2</allure-maven.version>
         <rest-assured.version>5.1.0</rest-assured.version>
         <gson.version>2.9.0</gson.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <assertj-core.version>3.23.1</assertj-core.version>
-        <suiteXmlFile>src/test/resources/regression.xml</suiteXmlFile>
+        <suiteXmlFile>src/test/resources/smoke.xml</suiteXmlFile>
         <faker.version>1.0.2</faker.version>
         <cucumber.version>6.11.0</cucumber.version>
-        <testng.version>7.5</testng.version>
         <assertj-core.version>3.23.1</assertj-core.version>
     </properties>
 
@@ -38,6 +37,11 @@
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
@@ -77,7 +81,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver.version}</version>
-            <scope>runtime</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
@@ -90,7 +93,6 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
-            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
@@ -135,24 +137,29 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>${allure-maven.version}</version>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
+                <version>3.0.0-M3</version>
                 <configuration>
                     <argLine>
-                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.9.9.1/aspectjweaver-1.9.9.1.jar
-                        -Xmx256m
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar -Xmx256m
                     </argLine>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-                    </suiteXmlFiles>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>1.9.6</version>
+                    </dependency>
+                </dependencies>
             </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+            </plugin>
+
         </plugins>
     </build>
 </project>

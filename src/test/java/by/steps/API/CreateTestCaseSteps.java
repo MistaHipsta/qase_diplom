@@ -1,4 +1,4 @@
-package by.steps;
+package by.steps.API;
 
 import by.example.dto.Case;
 import by.example.dto.OnlyRequiredFields;
