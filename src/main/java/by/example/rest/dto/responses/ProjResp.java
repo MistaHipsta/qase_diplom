@@ -1,5 +1,6 @@
-package by.example.rest.dto.responses.project;
+package by.example.rest.dto.responses;
 
+import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,8 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 @Builder
 @Accessors(chain = true)
-public class Result {
-    public String code;
+public class ProjResp {
+    @Expose
+    private boolean status;
+    private Result result;
 }

@@ -37,6 +37,20 @@ public class BaseApiClient {
                 .response();
     }
 
+    public Response postCode(String uri, Object body, Map<String, ?> code) {
+        return given()
+                .spec(baseRequest)
+                .pathParams(code)
+                .body(body)
+                .log().ifValidationFails()
+                .when()
+                .post(uri)
+                .then()
+                .log().ifValidationFails()
+                .extract()
+                .response();
+    }
+
     public Response get(String uri, Map<String, ?> code) {
         return given()
                 .spec(baseRequest)
@@ -44,6 +58,18 @@ public class BaseApiClient {
                 .when()
                 .log().ifValidationFails()
                 .get(uri)
+                .then()
+                .log().ifValidationFails()
+                .extract()
+                .response();
+    }
+    public Response delete(String uri, Map<String, ?> code) {
+        return given()
+                .spec(baseRequest)
+                .pathParams(code)
+                .when()
+                .log().ifValidationFails()
+                .delete(uri)
                 .then()
                 .log().ifValidationFails()
                 .extract()

@@ -1,4 +1,4 @@
-package by.example.rest.dto.responses.projectByCode;
+package by.example.rest.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

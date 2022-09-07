@@ -1,5 +1,6 @@
 package by.example.rest.dto.testCases;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +11,8 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor(access = PRIVATE)
 @Builder
 public class Case {
-    //public List<String> attachments;
-    public List<Step> steps;
-    //public List<String> tags;
+
+    public List<String> steps;
     public String title;
     public String description;
     public String preconditions;
@@ -22,9 +22,8 @@ public class Case {
     public int behavior;
     public int type;
     public int layer;
-    public int is_flaky;
-    //public int suite_id;
-   // public int milestone_id;
+    @SerializedName("is_flaky")
+    public int isFlaky;
     public int automation;
     public int status;
 }

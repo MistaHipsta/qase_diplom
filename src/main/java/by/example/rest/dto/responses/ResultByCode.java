@@ -1,4 +1,4 @@
-package by.example.rest.dto.responses.projectByCode;
+package by.example.rest.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,8 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 @Builder
 @Accessors(chain = true)
-public class Defects {
-    public int total;
-    public int open;
+public class ResultByCode {
+    public String title;
+    public String code;
+    public Counts counts;
 }

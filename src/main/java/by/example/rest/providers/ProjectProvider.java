@@ -8,9 +8,10 @@ public class ProjectProvider {
     Faker faker = new Faker();
     public Project getProjectValues() {
         return Project.builder()
-                .title(faker.lorem().characters(10))
-                .code(RandomStringUtils.randomAlphabetic(5).toUpperCase())
-                .description(faker.lorem().characters(10))
+                .title(faker.lorem().characters(3,9).toUpperCase())
+                .code(faker.lorem().characters(3,9).toUpperCase())
+                .description(faker.lorem().characters(3,9).toUpperCase())
                 .build();
     }
+
 }

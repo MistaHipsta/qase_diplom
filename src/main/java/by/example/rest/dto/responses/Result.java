@@ -1,10 +1,11 @@
-package by.example.rest.dto.responses.projectByCode;
+package by.example.rest.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
@@ -12,7 +13,6 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 @Builder
 @Accessors(chain = true)
-public class Runs {
-    public int total;
-    public int active;
+public class Result {
+    public String code;
 }

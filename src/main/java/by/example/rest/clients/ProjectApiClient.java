@@ -1,8 +1,9 @@
 package by.example.rest.clients;
 
 import by.example.rest.dto.project.Project;
-import by.example.rest.dto.responses.project.ProjResp;
-import by.example.rest.dto.responses.projectByCode.ProjRespByCode;
+import by.example.rest.dto.responses.DeletedProj;
+import by.example.rest.dto.responses.ProjResp;
+import by.example.rest.dto.responses.ProjRespByCode;
 import io.restassured.response.Response;
 
 import java.util.Map;
@@ -31,4 +32,20 @@ public class ProjectApiClient extends BaseApiClient {
                 .body()
                 .as(ProjRespByCode.class);
     }
+
+    public DeletedProj deleteProject(String projectCode, int statusCodeHttp) {
+        Response response = delete(PROJECT_URI_WITH_CODE, Map.of(PROJECT_CODE, projectCode));
+        return response.then()
+                .statusCode(statusCodeHttp)
+                .extract()
+                .body()
+                .as(DeletedProj.class);
+    }
+
+    public Response getDeleteProject(String projectCode) {
+        return get(PROJECT_URI_WITH_CODE, Map.of(PROJECT_CODE, projectCode));
+    }
+
+
+
 }
