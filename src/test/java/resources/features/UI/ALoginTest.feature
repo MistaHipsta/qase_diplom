@@ -1,5 +1,5 @@
+@smoke
 Feature: Login test
-  @smoke
   Scenario: Login
 
     Given open login page and log in with next valid params:
@@ -11,4 +11,3 @@ Feature: Login test
     Given open login page and log in with next not valid params:
       | username | suvorov@adf.com |
       | password | qqq             |
-

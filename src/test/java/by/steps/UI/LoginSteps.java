@@ -18,7 +18,6 @@ public class LoginSteps {
     @Given("open login page and log in with next valid params:")
     public void openLoginPageAndLogInWithNextParams(DataTable validCredentials) {
 
-
         Map<String, String> params = validCredentials.asMap(String.class, String.class);
         loginPage
                 .open()
