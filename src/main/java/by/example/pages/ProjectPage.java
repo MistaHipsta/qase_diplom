@@ -1,5 +1,6 @@
 package by.example.pages;
 
+import by.example.projectPrivate.ProjectPrivate;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
@@ -10,12 +11,9 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
-public class ProjectPage {
+public class ProjectPage extends ProjectPrivate {
 
-    private String projectName;
-    private String projectCode;
-    private String description;
-    private String projectAccessType;
+ProjectPrivate projectName = new ProjectPrivate();
 
     SelenideElement deleteButton = $(xpath("//*[contains(text(),'Change name')]/../../..//a[@class='text-danger']"));
 
@@ -52,19 +50,22 @@ public class ProjectPage {
         return new ProjectPage();
     }
 
-    public ProjectPage checkProjectNameAfterCreate(String projectName){
+    public ProjectPage checkProjectNameAfterCreate(String projectName) {
         Assert.assertEquals($(xpath(String.format("//a[contains(text(),'%s')]", projectName))).getText()
                 , projectName, "Project name not equal created project");
         return new ProjectPage();
     }
 
-    public ProjectPage clickOnDropDownMenu(){
+    public ProjectPage clickOnDropDownMenu(String projectName) {
         $(xpath(String.format("//a[text()='%s']//ancestor::tr[@class='project-row']//a[contains(@class,'btn-dropdown')]"
                 , projectName))).click();
         return new ProjectPage();
     }
 
-    public ProjectPage createValidProject(String projectName, String projectCode, String description, String accessType) {
+    public ProjectPage createValidProject(String projectName,
+                                          String projectCode,
+                                          String description,
+                                          String accessType) {
         $(id("createButton")).click();
         $(id("inputTitle")).sendKeys(projectName);
         $(id("inputCode")).clear();
@@ -83,38 +84,6 @@ public class ProjectPage {
 
     public SelenideElement getDeleteButton() {
         return deleteButton;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public String getProjectCode() {
-        return projectCode;
-    }
-
-    public void setProjectCode(String projectCode) {
-        this.projectCode = projectCode;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getProjectAccessType() {
-        return projectAccessType;
-    }
-
-    public void setProjectAccessType(String projectAccessType) {
-        this.projectAccessType = projectAccessType;
     }
 
     public SelenideElement getSubmitButton() {

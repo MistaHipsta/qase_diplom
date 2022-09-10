@@ -3,7 +3,7 @@
 <suite name="Suite">
     <test name="TestNG">
         <packages>
-            <package name="runner"/>
+            <package name="testRunner"/>
         </packages>
     </test>
 </suite> <!-- Suite -->

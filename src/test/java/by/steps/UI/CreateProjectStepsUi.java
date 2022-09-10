@@ -6,10 +6,12 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 
 import java.util.Map;
+
 
 public class CreateProjectStepsUi {
 
@@ -45,7 +47,7 @@ public class CreateProjectStepsUi {
 
     @And("click dropdown menu on created project")
     public void clickDropdownMenuOnCreatedProject() {
-        validProject.clickOnDropDownMenu();
+        validProject.clickOnDropDownMenu(validProject.getProjectName());
     }
 
     @And("click delete button")
@@ -102,7 +104,7 @@ public class CreateProjectStepsUi {
 
     @When("click dropdown menu on updated project")
     public void clickDropdownMenuOnUpdatedProject() {
-        validProject.clickOnDropDownMenu();
+        validProject.clickOnDropDownMenu(validProject.getProjectName());
     }
 
     @And("check error message code text")
