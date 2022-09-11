@@ -12,7 +12,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class DeletedProj {
     public boolean status;
 }

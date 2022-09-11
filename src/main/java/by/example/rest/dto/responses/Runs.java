@@ -12,7 +12,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Runs {
     public int total;
     public int active;

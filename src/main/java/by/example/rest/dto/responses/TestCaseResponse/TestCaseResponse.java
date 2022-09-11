@@ -1,10 +1,12 @@
 package by.example.rest.dto.responses.TestCaseResponse;
 
-import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -13,7 +15,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class TestCaseResponse {
 
     public boolean status;

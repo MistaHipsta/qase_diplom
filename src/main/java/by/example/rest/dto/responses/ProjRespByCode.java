@@ -12,7 +12,7 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class ProjRespByCode {
     public boolean status;
     public ResultByCode result;

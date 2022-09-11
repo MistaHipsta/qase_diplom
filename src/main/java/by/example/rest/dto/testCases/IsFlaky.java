@@ -4,10 +4,9 @@ import java.util.Arrays;
 
 public enum IsFlaky {
 
-    undefined(0),
-    e2e(1),
-    api(2),
-    unit(3);
+    yes(0),
+    no(1);
+
 
     private final int code;
 

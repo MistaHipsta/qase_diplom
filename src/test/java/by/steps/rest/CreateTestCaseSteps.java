@@ -31,8 +31,7 @@ public class CreateTestCaseSteps {
 
         TestCaseById actualTestCase = testCaseApiClient.getTestCase(project.getCode(), postActualTestCase.getResult().getId(), 200);
         assertThat(actualTestCase).as("Test Case are different")
-                .isEqualTo(expectedTestCase).usingRecursiveComparison()
-                ;
+                .isEqualTo(expectedTestCase);
 
     }
 
