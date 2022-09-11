@@ -11,7 +11,6 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
 @Builder
-@Accessors(chain = true)
 public class ResultByCode {
     public String title;
     public String code;

@@ -1,4 +1,4 @@
-package by.example.rest.dto.project;
+package by.example.rest.dto.testCases;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Data
 @AllArgsConstructor(access = PRIVATE)
 @Builder
-public class OnlyRequiredFields {
-    public String title;
+public class Root {
+    public boolean status;
+    public Case result;
 }

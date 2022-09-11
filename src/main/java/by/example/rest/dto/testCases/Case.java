@@ -27,3 +27,4 @@ public class Case {
     public int automation;
     public int status;
 }
+

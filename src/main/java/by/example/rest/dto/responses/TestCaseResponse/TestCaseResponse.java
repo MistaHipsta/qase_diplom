@@ -1,15 +1,23 @@
 package by.example.rest.dto.responses.TestCaseResponse;
 
+import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import java.util.List;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+
 import static lombok.AccessLevel.PRIVATE;
 
+
 @Data
-@AllArgsConstructor(access = PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor(access = PRIVATE)
 @Builder
+
 public class TestCaseResponse {
+
     public boolean status;
-    public ResultResponseTestCase result;
+    public Result result;
 }

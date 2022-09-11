@@ -46,6 +46,7 @@ public class BaseApiClient {
                 .when()
                 .post(uri)
                 .then()
+                .statusCode(200)
                 .log().ifValidationFails()
                 .extract()
                 .response();

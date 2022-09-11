@@ -12,7 +12,6 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
 @Builder
-@Accessors(chain = true)
 public class Counts {
     public int cases;
     public int suites;

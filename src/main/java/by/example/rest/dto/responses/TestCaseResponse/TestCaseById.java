@@ -1,17 +1,19 @@
-package by.example.rest.dto.responses;
+package by.example.rest.dto.responses.TestCaseResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = PRIVATE)
 @Builder
-public class Runs {
-    public int total;
-    public int active;
+
+public class TestCaseById {
+
+    public boolean status;
+    public ResultById result;
 }

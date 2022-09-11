@@ -1,50 +1,44 @@
 package by.steps.rest;
 
-import by.example.rest.clients.BaseApiClient;
 import by.example.rest.clients.ProjectApiClient;
+import by.example.rest.clients.TestCaseApiClient;
 import by.example.rest.dto.responses.ProjResp;
+import by.example.rest.dto.responses.TestCaseResponse.TestCaseById;
 import by.example.rest.dto.responses.TestCaseResponse.TestCaseResponse;
 import by.example.rest.dto.testCases.Case;
-import by.example.rest.dto.project.OnlyRequiredFields;
 import by.example.rest.dto.project.Project;
 
-import by.example.rest.dto.testCases.Step;
 import by.example.rest.providers.ProjectProvider;
 import by.example.rest.providers.TestCaseProvider;
-import by.example.utils.PropertiesLoader;
-import com.github.javafaker.Faker;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.restassured.http.ContentType;
 import lombok.extern.log4j.Log4j2;
-import org.testng.annotations.BeforeMethod;
-
-import java.util.List;
-import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
 @Log4j2
-public class CreateTestCaseSteps extends BaseApiClient {
+public class CreateTestCaseSteps {
     ProjectApiClient projectApiClient = new ProjectApiClient();
+    TestCaseApiClient testCaseApiClient = new TestCaseApiClient();
+
     Project project;
 
-    @BeforeMethod
-    public void createProject() {
-
+    @Given("create test case")
+    public void createTestCase() {
         project = new ProjectProvider().getProjectValues();
         ProjResp postProject = projectApiClient.postProject(project, 200);
-    }
 
-
-    @Given("create test case")
-    public void createtestCase() {
         Case expectedTestCase = new TestCaseProvider().getTestCase();
-        TestCaseResponse postActualTestCase =
+        TestCaseResponse postActualTestCase = testCaseApiClient.postTestCase(expectedTestCase, postProject.getResult().getCode(), 200);
+
+        TestCaseById actualTestCase = testCaseApiClient.getTestCase(project.getCode(), postActualTestCase.getResult().getId(), 200);
+        assertThat(actualTestCase).as("Test Case are different").usingRecursiveComparison()
+                .comparingOnlyFields("title", "actual_result")
+                .isEqualTo(expectedTestCase);
 
     }
+
+}
 
 
 //    String extractedCode;
@@ -206,5 +200,5 @@ public class CreateTestCaseSteps extends BaseApiClient {
 //                delete("https://api.qase.io/v1/case/" + extractedCode + "/" + idTestcase).
 //                then().
 //                statusCode(200).log().all();
-}
+
 
