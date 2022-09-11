@@ -1,8 +1,8 @@
 package by.example.rest.dto.responses.TestCaseResponse;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.annotations.SerializedName;
-import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -62,3 +62,4 @@ public class ResultById {
     @SerializedName("updated_at")
     public Date updatedAt;
 }
+

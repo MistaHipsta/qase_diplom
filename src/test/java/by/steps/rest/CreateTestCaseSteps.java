@@ -30,9 +30,9 @@ public class CreateTestCaseSteps {
         TestCaseResponse postActualTestCase = testCaseApiClient.postTestCase(expectedTestCase, postProject.getResult().getCode(), 200);
 
         TestCaseById actualTestCase = testCaseApiClient.getTestCase(project.getCode(), postActualTestCase.getResult().getId(), 200);
-        assertThat(actualTestCase).as("Test Case are different")
-                .isEqualTo(expectedTestCase).usingRecursiveComparison()
-                ;
+        assertThat(actualTestCase).as("Test Case are different").usingRecursiveComparison()
+                .comparingOnlyFields("title", "actual_result")
+                .isEqualTo(expectedTestCase);
 
     }
 
