@@ -1,8 +1,9 @@
 package by.example.rest.dto.responses.TestCaseResponse;
 
+import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.google.gson.annotations.SerializedName;
-import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +22,6 @@ import static lombok.AccessLevel.PRIVATE;
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultById {
-
     public int id;
     public int position;
     public String title;
