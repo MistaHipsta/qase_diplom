@@ -11,10 +11,11 @@ import by.example.rest.providers.ProjectProvider;
 import by.example.rest.providers.TestCaseProvider;
 import io.cucumber.java.en.Given;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Log4j2
+@Slf4j
 public class CreateTestCaseSteps {
     ProjectApiClient projectApiClient = new ProjectApiClient();
     TestCaseApiClient testCaseApiClient = new TestCaseApiClient();
@@ -23,6 +24,7 @@ public class CreateTestCaseSteps {
 
     @Given("create test case")
     public void createTestCase() {
+
         project = new ProjectProvider().getProjectValues();
         ProjResp postProject = projectApiClient.postProject(project, 200);
 

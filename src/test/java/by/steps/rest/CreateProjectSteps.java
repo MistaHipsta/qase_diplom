@@ -8,9 +8,11 @@ import by.example.rest.providers.ProjectProvider;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.restassured.response.Response;
+import lombok.extern.slf4j.Slf4j;
+import org.opentest4j.AssertionFailedError;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@Slf4j
 public class CreateProjectSteps {
 
     ProjectApiClient projectApiClient = new ProjectApiClient();
@@ -18,6 +20,8 @@ public class CreateProjectSteps {
 
     @Given("create project")
     public void createProject() {
+
+        log.info("start create project");
         project = new ProjectProvider().getProjectValues();
         ProjResp postProject = projectApiClient.postProject(project, 200);
 
@@ -33,17 +37,23 @@ public class CreateProjectSteps {
 
     @And("delete project")
     public void deleteProject() {
+        log.info("start delete project");
         project = new ProjectProvider().getProjectValues();
-        ProjResp postProject = projectApiClient.postProject(project, 200);
+        projectApiClient.postProject(project, 200);
         DeletedProj deletedProj = projectApiClient.deleteProject(project.getCode(), 200);
 
         assertThat(deletedProj.isStatus())
                 .as("The status is incorrect")
                 .isTrue();
         Response deletedProjectResponse = projectApiClient.getDeleteProject(project.getCode());
-
+        try {
+            throw new AssertionError("error delete project");
+        }catch (AssertionError e){
+            log.error("error delete project",e);
+        }
         assertThat(deletedProjectResponse.statusCode())
                 .as("Project is not deleted")
-                .isEqualTo(404);
+                .isEqualTo(704);
+
     }
 }
