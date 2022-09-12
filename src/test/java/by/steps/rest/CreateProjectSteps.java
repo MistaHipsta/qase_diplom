@@ -53,7 +53,7 @@ public class CreateProjectSteps {
         }
         assertThat(deletedProjectResponse.statusCode())
                 .as("Project is not deleted")
-                .isEqualTo(704);
+                .isEqualTo(404);
 
     }
 }
